@@ -12,4 +12,3 @@ axs[1, 1].hist2d(data[0], data[1])
 
 plt.show() 
 plt.show()
-# hello
