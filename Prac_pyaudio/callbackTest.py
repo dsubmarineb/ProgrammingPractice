@@ -4,15 +4,13 @@ import pyaudio
 import wave
 import time
 import sys
-print("\nHI\n")
+
+print(sys.argv, len(sys.argv))
 
 if len(sys.argv) < 2:
-    print(len(sys.argv))
-    print("z%s" % sys.argv[0])
     print("Plays a wave file.\n\nUsage: %s filename.wav" % sys.argv[0])
     sys.exit(-1)
 
-print("\nHI\n")
 wf = wave.open(sys.argv[1], 'rb')
 
 # instantiate PyAudio (1)
@@ -35,7 +33,7 @@ stream.start_stream()
 
 # wait for stream to finish (5)
 while stream.is_active():
-    time.sleep(5)
+    time.sleep(0.1)
 
 # stop stream (6)
 stream.stop_stream()
