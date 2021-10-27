@@ -3,7 +3,7 @@
 
 # ignore audacity project files
 *.aup
-whistle_data\
+whistle_data
 
 # ignore virtual environment
 .venv
