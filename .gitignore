@@ -1,2 +1,6 @@
 # ignore .wav files
 *.wav
+
+# ignore audacity project files
+*.aup
+whistle_data

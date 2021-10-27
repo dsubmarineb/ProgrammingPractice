@@ -4,8 +4,6 @@ import pyaudio
 import wave
 import sys
 
-import time
-
 CHUNK = 1024
 
 if len(sys.argv) < 2:
@@ -23,22 +21,13 @@ stream = p.open(format=p.get_format_from_width(wf.getsampwidth()),
                 rate=wf.getframerate(),
                 output=True)
 
-def readandcount():
-    start=time.time()
-    data=wf.readframes(CHUNK)
-    print(data)
-    end=time.time()
-    print(end-start)
-    return data
-
 # read data
+data = wf.readframes(CHUNK)
 
-data = readandcount()
-print((data))
 # play stream (3)
 while len(data) > 0:
     stream.write(data)
-    data = readandcount()
+    data = wf.readframes(CHUNK)
 
 # stop stream (4)
 stream.stop_stream()
