@@ -16,11 +16,19 @@ p = pyaudio.PyAudio()
 
 # define callback (2)
 x = 0
+
+def pairwise(it):
+    it = iter(it)
+    while True:
+        try: 
+            yield next(it), next(it)
+        except StopIteration:
+            return
+
 def callback(in_data, frame_count, time_info, status):
     data = wf.readframes(frame_count)
-    global x
-    x += 1
-    print(x)
+    data2 = list(pairwise(data))
+    #print("\n",data2,"\n")
     return (data, pyaudio.paContinue)
 
 # open stream using callback (3)
@@ -45,6 +53,3 @@ wf.close()
 
 # close PyAudio (7)
 p.terminate()
-
-format=p.get_format_from_width(wf.getsampwidth())
-print(wf.getsampwidth())
